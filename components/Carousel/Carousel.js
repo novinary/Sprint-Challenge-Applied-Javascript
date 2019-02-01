@@ -29,7 +29,6 @@ class Carousel {
     }
 }
 
-
 let carousel = document.querySelectorAll('.carousel, .left-button, .right-button');
 carousel.forEach(item => new Carousel(item));
 
