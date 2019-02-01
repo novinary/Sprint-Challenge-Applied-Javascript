@@ -1,14 +1,34 @@
 class Carousel {
+    //  grab a reference to the carousel, and in it grab the left and right buttons
+    //  grab a reference to all of the images
+    constructor(carousel) {
+        this.carousel = carousel;
+        this.images = document.querySelectorAll('.carousel img')
+        this.imagesmap = Array.from(this.images)
+        this.current = this.images[0]; // Create a current index
+        this.current.style.display = 'inline-block';
+        this.carousel.addEventListener('click', () => {this.arrowSelection()}  // buttons are gonna need some click handlers.
+        );
+    }
+    arrowSelection() {
+        // make the cards slide out if the left button is clicked
+        if (this.carousel.classList.contains('left-button')) {
+        this.current.style.display = 'none';
+        this.imagesmap.unshift(this.imagesmap.pop());    //unshift and pop array methods used for this solution 
+        this.current = this.imagesmap[0];
+        this.current.style.display = 'inline-block';
+        }
 
+        //make the cards slide in if the right button is clicked
+        else if (this.carousel.classList.contains('right-button')) {
+        this.current.style.display = 'none';
+        this.imagesmap.push(this.imagesmap.shift());    //push and shift array methods used for this solution
+        this.current = this.imagesmap[0];
+        this.current.style.display = 'inline-block';
+        };
+    }
 }
 
-let carousel = document.querySelector();
+let carousel = document.querySelectorAll('.carousel, .left-button, .right-button');
+carousel.forEach(item => new Carousel(item));
 
-/* If You've gotten this far, you're on your own! Although we will give you some hints:
-    1. You will need to grab a reference to the carousel, and in it grab the laft and right buttons
-    2. You will need to grab a reference to all of the images
-    3. Create a current index
-    4. Those buttons are gonna need some click handlers.
-    5. Think of how you would animate this compoennt. Make the cards slide in and out, or fade. It's up to you!
-    6. Have fun!
-*/
